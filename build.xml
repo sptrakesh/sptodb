@@ -1,0 +1,118 @@
+<?xml version='1.0'?>
+
+<project name='sptodb' default='depclean' basedir='.'>
+
+  <property environment='env' />
+  <property file='ant.properties' />
+
+  <target name='clean'
+          description='Clears all generated files, including build directories, distributables, and documentation.'>
+    <delete dir='${dir.build}' />
+    <delete dir='${dir.deploy}' />
+    <delete dir='${dir.docs}' />
+  </target>
+
+  <path id='compile.classpath'>
+    <fileset  dir='${dir.lib}'>
+      <include name='*.jar' />
+    </fileset>
+
+  </path>
+
+  <target name='compile'
+          description='Compiles the application and arranges resources into a web archive hierarchy.'>
+    <mkdir dir='${dir.build}' />
+    <mkdir dir='${dir.deploy}' />
+    <javac
+      destdir='${dir.build}'
+      debug='${debug}' deprecation='yes'
+      optimize='on'>
+      <classpath>
+        <path refid='compile.classpath' />
+      </classpath>
+      <src path='${dir.src.app}'/>
+      <include name='com/sptci/prevayler/**'/>
+    </javac>
+  </target>
+
+  <target name='jar' depends='compile'
+    description='Builds jar archives with all compiled classes for application.'>
+    <delete>
+      <fileset dir='${dir.deploy}' includes='*.jar'/>
+    </delete>
+    <jar jarfile='${dir.deploy}/${sptodb}' basedir='${dir.build}'
+      includes='**/*.class'>
+    </jar>
+  </target>
+
+  <path id="test.classpath">
+    <pathelement path='${dir.build}' />
+    <fileset  dir='${dir.lib}'>
+      <include name='*.jar' />
+    </fileset>
+  </path>
+
+  <target name='test' depends='compile'
+    description='Executes Unit Test cases in the test package tree.'>
+    <javac srcdir='${dir.src.test}'
+      destdir='${dir.build}'
+      debug='${debug}' deprecation='yes'
+      optimize='on'>
+      <classpath>
+        <path refid='test.classpath' />
+      </classpath>
+      <include name='com/sptci/prevayler/**'/>
+    </javac>
+
+    <java fork='true' classname='org.junit.runner.JUnitCore'>
+      <jvmarg value='-ea' />
+      <sysproperty key='sptodb.search.batchSize' value='1' />
+      <arg value='com.sptci.prevayler.AllTests' />
+      <classpath>
+        <path refid='test.classpath' />
+      </classpath>
+    </java>
+  </target>
+
+  <target name='deploy' depends='jar'
+    description='Copy the libraries to standard location'>
+    <copy preservelastmodified='true' overwrite='true'
+      todir='${dir.jars}'>
+      <fileset dir='${dir.deploy}'>
+        <include name='${sptodb}' />
+      </fileset>
+    </copy>
+  </target>
+
+  <target name='depclean' depends='deploy, clean' />
+
+  <path id="javadoc.sources">
+    <pathelement path='${dir.src.app}' />
+  </path>
+  <path id="javadoc.classpath">
+    <pathelement path='${dir.build}' />
+    <fileset  dir='${dir.lib}'>
+      <include name='*.jar' />
+    </fileset>
+  </path>
+
+  <target name='docs' depends='compile'
+    description='Generate Java API docs for the sources used for the project.' >
+    <mkdir dir='${dir.docs}' />
+    <javadoc sourcepathref='javadoc.sources' destdir='${dir.docs}'
+      classpathref='javadoc.classpath' version='yes'
+      author='yes' use='yes' splitindex='yes'
+      Overview='${dir.src.app}/overview.html' Header='${javadoc.header}'
+      DocTitle='${javadoc.doctitle}' Windowtitle='${javadoc.windowtitle}'
+      stylesheetfile='${javadoc.css}' linksource='yes'
+      access='private' defaultexcludes='yes' >
+      <packageset dir='${dir.src}'>
+        <include name='com/sptci/**' />
+      </packageset>
+      <link href='http://docs.rakeshv.org/java/j2sdk1.5/docs/api/' />
+      <link href='http://docs.rakeshv.org/java/prevayler/' />
+      <link href='http://sptci.com/docs/public/' />
+    </javadoc>
+  </target>
+
+</project>

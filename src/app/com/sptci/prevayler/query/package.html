@@ -1,0 +1,21 @@
+<body>
+  <p>Queries defined for the prevalent system.  Attempts to provide the
+  most common queries likely to be required of a database engine.</p>
+
+  <p>The following shows sample use of a query:</p>
+  <pre>
+    import com.sptci.prevayler.PrevalentObject;
+    import com.sptci.prevayler.PrevalentSystemFactory;
+    import com.sptci.prevayler.query.Count;
+
+      final Prevayler prevayler = PrevalentSystemFactory.getPrevayler();
+      ...
+      ... public class MyObject extends PrevalentObject { ... }
+      final int count = (Integer) prevayler.execute( new Count( MyObject.class ) );
+  </pre>
+
+  <p>Please note that even though the queries in this package are genericised,
+  you have to cast the returned values to the appropriate types.  This is
+  mandated due to the fact that <a href='http://www.prevayler.org/'
+  target='_new'>Prevayler</a> is not genericised.</p>
+</body>

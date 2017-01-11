@@ -1,0 +1,30 @@
+<body>
+  <p><b>Note:</b> Users do not normally need to directly use these classes.
+  It is better to use the higher level interface exposed by {@link
+  com.sptci.prevayler.PrevalentManager}.</p>
+  <p>Transactions defined for the prevalent system.  Attempts to provide the
+  most common transactions likely to be required of a database engine.  All
+  provided transactions are sub-classes of the general purpose {@link
+  com.sptci.prevayler.annotation.Transaction} class that may be used to
+  execute any transactional method defined in {@link
+  com.sptci.prevayler.PrevalentSystem} or is sub-classes.</p>
+
+  <p>The following shows sample use of a transaction:</p>
+  <pre>
+    import com.sptci.prevayler.PrevalentObject;
+    import com.sptci.prevayler.PrevalentSystemFactory;
+    import com.sptci.prevayler.transaction.Save;
+
+      final Prevayler prevayler = PrevalentSystemFactory.getPrevayler();
+      ...
+      ... public class MyObject extends PrevalentObject { ... }
+      final MyObject obj = new MyObject();
+      obj.setXXX(...)...
+      final MyObject newobj = prevayler.execut( new Save&lt;MyObject&gt;( obj ) );
+  </pre>
+
+  <p>Please note that even though the transactions in this package are
+  genericised, you have to cast the returned values to the appropriate types.
+  This is mandated due to the fact that <a href='http://www.prevayler.org/'
+  target='_new'>Prevayler</a> is not genericised.</p>
+</body>

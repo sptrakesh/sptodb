@@ -1,0 +1,25 @@
+project.name                      SPT Object Database
+
+debug                             yes
+version                           0.3.0
+
+dir.jars                          lib
+
+dir.config                        config
+dir.docs                          docs
+dir.docs.public                   ${dir.docs}/public
+dir.docs.private                  ${dir.docs}/private
+dir.lib                           lib
+dir.src                           src
+dir.src.app                       ${dir.src}/app
+dir.src.test                      ${dir.src}/test
+
+dir.build                         build
+dir.deploy                        deploy
+
+javadoc.css                       ${dir.config}/javadoc.css
+javadoc.doctitle                  <a href='http://sptci.com/' target='_top'>Sans Pareil Technologies, Inc.</a><br/> Object Database API
+javadoc.header                    <b><a href='http://sptci.com/' target='_top' title='Sans Pareil Technologies, Inc.'>SPT</a> Object Database API</b>
+javadoc.windowtitle               Sans Pareil Technologies, Inc. - Object Database API
+
+sptodb                            sptodb.jar

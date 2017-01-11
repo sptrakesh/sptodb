@@ -1,0 +1,47 @@
+<body>
+  <p>
+    API documentation for the <a href='http://sptci.com/' target='_new'>SPT</a>
+    <a href='https://sptodb.dev.java.net/' target='_new'>Object Database</a>.
+    The database engine is implemented using
+    <a href='http://www.prevayler.org/' target='_new'>Prevayler</a> as
+    the transactional serialisation engine.  The database engine attempts to
+    provide features that are normal for an object database over and above
+    the features made available by Prevayler.
+  </p>
+
+  <p>The following are core features provided by the database:</p>
+  <ol>
+    <li>Transparent persistence of complex object graphs.</li>
+    <li>Persistence by reachability on preavlent objects in the object
+    graph that have not yet been persisted.  Note that persistence by
+    reachability applies both to {@link com.sptci.prevayler.transaction.Add}
+    and {@link com.sptci.prevayler.transaction.Update} transactions.</li>
+    <li>Annotations based indexing and constraints.</li>
+    <li>Managed relationships to automatically manage references when
+    persistent objects are deleted from the prevalent system.</li>
+    <li>Configurable snapshot intervals and mechanism (XML or Java
+      serialisation).</li>
+  </ol>
+
+  <p>The primary classes exposed by the database are:</p>
+  <ol>
+    <li>{@link com.sptci.prevayler.PrevalentObject} - The base class for all
+    objects that can be managed using the database engine.</li>
+    <li>{@link com.sptci.prevayler.PrevalentManager} - A facade around the
+    prevalent system.  Similar to
+    <a href='http://docs.rakeshv.org/java/jdo2/javax/jdo/PersistenceManager.html'
+        target='_new'>JDO PersistenceManager</a>.  Provides a much more
+      natural interface than that provided by prevayler.</li>
+    <li>{@link com.sptci.prevayler.PrevalentSystemFactory} - The factory
+    class used to bootstrap the prevalent system.  Not be use used if using
+    {@link com.sptci.prevayler.PrevalentManager}.</li>
+    <li>{@link com.sptci.prevayler.PrevalentSystem} - The primary class wrapped
+    by <a href='http://docs.rakeshv.org/java/prevayler/org/prevayler/Prevayler.html'
+        target='_new'>Prevayler</a>
+    instance.  Users may chose to sub-class this implementation for custom
+    management of their prevalent objects.</li>
+    <li>{@link com.sptci.prevayler.annotations} - Package under which the
+    annotations used to configure indices, foreign keys, constraints etc
+    for the prevalent objects are available.</li>
+  </ol>
+</body>

@@ -1,0 +1,15 @@
+<body>
+  <p>Core classes for the database engine built around Prevayler.</p>
+  <p>Sample usage:</p>
+  <pre>
+    import com.sptci.prevayler.PrevalentManager;
+
+    ...
+      // MyPrevalentObject is a sub-class of PrevalentObject
+      final MyPrevalentObject obj1 = new MyPrevalentObject();
+      obj1.setXXX();
+      ...
+      final MyPrevalentObject obj2 = PrevalentManager.save( obj1 );
+      System.out.format( "MyPrevalentObject created with OID: %s%n", obj2.getObjectId() );
+  </pre>
+</body>

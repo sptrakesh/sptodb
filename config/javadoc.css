@@ -1,0 +1,71 @@
+/* Javadoc style sheet */
+
+/* Define colors, fonts and other style attributes here to override the defaults */
+
+/* Page background color */
+body
+{ 
+  font-family: helvetica, times, verdana, arial, sans-serif; 
+  background-color: #ffffff;
+  line-height:1.6;
+  word-spacing:0.1em;
+  font-size: 11pt;
+  letter-spacing:0.01em;
+}
+
+/* Table colors */
+.TableHeadingColor     { background: #4f4f6f; color: white; } 
+.TableSubHeadingColor  { background: #EEEEFF } 
+.TableRowColor         { background: #ffffff; color: #1f1f27; } 
+
+/* Font used in left-hand frame lists */
+.FrameTitleFont   { font-size: 11pt; }
+.FrameHeadingFont { font-size: 11pt; }
+.FrameItemFont    { font-size: 11pt; }
+
+/* Navigation bar fonts and colors */
+.NavBarCell1    { background-color:#afafef;}
+.NavBarCell1Rev { background-color:#1f1f27;}
+.NavBarFont1    { color:#000000;}
+.NavBarFont1Rev { color:#FFFFFF;}
+
+.NavBarCell2    { background-color:#FFFFFF;}
+.NavBarCell3    { background-color:#FFFFFF;}
+
+HR
+{
+  border-top: 1px solid #4f4f6f;
+  border-bottom: none;
+  height: 0px;
+}
+
+A
+{
+  color: #00004f;
+  text-decoration: none;
+}
+
+A:active { color: rgb( 255, 0, 0 ) }
+
+A:link { color: rgb( 0, 0, 238 ) }
+A:visited { color: #004f6f; }
+
+A:hover
+{
+  color: #4f0000;
+  background-color: #ffefaf;
+  text-decoration: underline;
+}
+
+PRE { color: #005f00; }
+
+CODE { color: #005f00; }
+
+TABLE
+{
+  border-style: solid;
+  border-color: #4f4f6f;
+  border-collapse: collapse;
+}
+
+TD { }
